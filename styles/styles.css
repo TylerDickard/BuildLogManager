@@ -1,0 +1,41 @@
+/*General Styling*/
+html {
+	scroll-behavior: smooth;
+	font-family: Helvetica, Arial, sans-serif;
+	max-width: 100%;
+	background: #f0f2f4;
+}
+th {
+	background: lightgray;
+	border-bottom-style: solid;
+	border-width: 3px;
+	border-color: darkgray;
+}
+section {
+  min-height: 100vh;
+  padding-top: 100px;
+  
+}
+
+th {
+	width: 2%;
+}
+tr.selected td a {
+	color: white;
+}
+tr td a {
+	color: #337ab7;
+}
+table {
+	max-width: 1080px;
+}
+.dataTables_length select {
+	width: 40%;
+} 
+
+div.container {
+	width:70%;
+}
+.invisible {
+	visibility: hidden;
+}

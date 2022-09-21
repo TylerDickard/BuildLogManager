@@ -1,0 +1,149 @@
+<!--
+	Author: Tyler Dickard
+	Last Updated: 8/10/2022
+	Description: This is the file for the new return label
+-->
+<!DOCTYPE html>
+<html lang="en">
+	<title>New Return Label</title>
+	<!--
+		Styling for the document
+	-->
+	<style>
+		html {
+			font-family: Helvetica, Arial, sans-serif;
+		}
+		table {
+			border: 2px solid black;
+			font-size: 25px;
+			max-width: 15%;
+		}
+		th {
+			font-weight: normal;
+		}
+		img {
+			width:50%;
+		}
+	</style>
+	<!--jQuery and jsBarcode scripts-->
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/barcodes/JsBarcode.code128.min.js"></script>
+	<!--Body setting up the tables for the label-->
+	<body>
+		<table cellspacing=0>
+			<tbody>
+				<tr>
+					<td colspan = 2 style="justify-content: center; font-weight: bold; text-align: center; border-bottom: 4px solid black">Medical Mutual of Ohio</td>
+				</tr>
+				<tr>
+					<th style="height: 15%;">To:</th>
+					<td><input type="text" id="toText" style="height: 20%;"></td>
+				</tr>
+				<tr>
+					<th style="height: 15%;">Mail Zone:</th> 
+					<td><input type="text" id="mzText" style="height: 20%;"></td>
+				</tr>
+				<tr>
+					<th>Asset Number:</th>
+					<td id="fillInOldAssetTag0"></td>
+				</tr>
+				<tr>
+					<th>Serial Number:</th>
+					<td id="fillInOldModelNumber0"></td>
+				</tr>
+				<tr>
+					<th>Device Model:</th>
+					<td><input type="text" id="dmText" style="height: 20%;"></td>
+				</tr>
+				<tr>
+					<td colspan=2 style=" border-bottom: 4px solid black;"></td>
+				</tr>
+				<tr>
+					<th>From:</th>
+					<td id="fillInCSA0"></td>
+				</tr>
+				<tr>
+					<th>Mail Zone:</th>
+					<td id="fillInMailZone0"></td>
+				</tr>
+				<tr>
+					<td colspan=2 style=" border-bottom: 4px solid black;"></td>
+				</tr>
+				<tr>
+					<td style="color: red;" colspan=2 id="dateSent"></td>
+				</tr>
+				<tr>
+					<td colspan=2 style=" border-bottom: 4px solid black;"></td>
+				</tr>
+				<tr>
+					<td colspan=2><img id="barcode0"/></td>
+				</tr>
+			</tbody>
+		</table>
+		<br>
+		<br>
+		<table cellspacing=0>
+			<tbody>
+				<tr>
+					<td colspan = 2 style="justify-content: center; font-weight: bold; text-align: center; border-bottom: 4px solid black">Medical Mutual of Ohio</td>
+				</tr>
+				<tr>
+					<th style="height: 15%;">To:</th>
+					<td><input type="text" id="toText" style="height: 20%;"></td>
+				</tr>
+				<tr>
+					<th style="height: 15%;">Mail Zone:</th> 
+					<td><input type="text" id="mzText" style="height: 20%;"></td>
+				</tr>
+				<tr>
+					<th>Asset Number:</th>
+					<td id="fillInOldAssetTag1"></td>
+				</tr>
+				<tr>
+					<th>Serial Number:</th>
+					<td id="fillInOldModelNumber1"></td>
+				</tr>
+				<tr>
+					<th>Device Model:</th>
+					<td><input type="text" id="dmText" style="height: 20%;"></td>
+				</tr>
+				<tr>
+					<td colspan=2 style=" border-bottom: 4px solid black;"></td>
+				</tr>
+				<tr>
+					<th>From:</th>
+					<td id="fillInCSA1"></td>
+				</tr>
+				<tr>
+					<th>Mail Zone:</th>
+					<td id="fillInMailZone1"></td>
+				</tr>
+				<tr>
+					<td colspan=2 style=" border-bottom: 4px solid black;"></td>
+				</tr>
+				<tr>
+					<td colspan=2><img id="barcode1"/></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+	<!--Function to gather data from the local storage, and generate the barcodes-->
+	<script>
+		window.onload = function() {
+			var today =new Date();
+			var date = (today.getMonth()+1)+'-'+today.getDate()+'-'+today.getFullYear();
+			var dateWipe = (today.getMonth()+1)+'-'+(today.getDate()+5)+'-'+today.getFullYear();
+			document.getElementById("dateSent").innerHTML = "Date Sent: " + date +"<br>Wipe Eligible: "+dateWipe;
+		
+			var assetOld = window.localStorage.getItem("oldAsstTag");
+			for(let x= 0; x<2; x++) {
+				document.getElementById("fillInOldAssetTag"+x).innerHTML = assetOld;
+				JsBarcode("#barcode"+x, assetOld);
+				document.getElementById("fillInOldModelNumber"+x).innerHTML = window.localStorage.getItem("oldDeviceName");
+				document.getElementById("fillInMailZone"+x).innerHTML = window.localStorage.getItem("mail");
+				document.getElementById("fillInCSA"+x).innerHTML = window.localStorage.getItem("csa");
+			}
+			window.localStorage.clear();
+		}
+	</script>
+</html>

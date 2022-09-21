@@ -1,0 +1,165 @@
+<!--
+	Author: Tyler Dickard
+	Description: This file is the main splash page, it houses
+	-All of the CSS files
+	-All of the scripts needed for jQuery and its Addons
+	-The defined tables and buttons
+-->
+<!DOCTYPE html>
+<html lang = "en">
+	<!--Setting the form as a viewport-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<head>
+		<!--Title of the webpage-->
+		<title>Build Log Manager</title>
+	</head>
+	<!-- My Stylesheet-->
+	<link rel = "stylesheet" href="styles/styles.css">
+	<!-- stylesheets for DataTables and its plugins -->
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+	<link rel="stylesheet" href="styles/dataTables.bootstrap5.min.css" />
+	<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.css" />
+	<link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.css" />
+	<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.5/css/responsive.dataTables.css" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.css" />
+	<!--Bootstrap5-->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+	<!--Main contents of a page-->
+	<body id="body">
+		<!--Nav Bar, provided by Bootstrap.com-->
+		<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+			<div class="container-fluid">
+			  <a class="navbar-brand" href="#body">Home</a>
+			  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				  <li class="nav-item">
+					<a class="nav-link" href="#activeRefreshes">Active Refresh Table</a>
+				  </li>
+				  <li class = "nav-item">
+					  <a class="nav-link" href = '#deployedRefreshes'>Deployed Refresh Table</a>
+				  </li>
+				</ul>
+				<form class="d-flex" role="search">
+					<input class="form-control" type="search" placeholder="Search" aria-label="Search" id="refreshSearch">
+				  </form>
+			  </div>
+			</div>
+		  </nav>
+		<!--The section for the active refreshes-->
+		<section id="activeRefreshes">
+			<h1>Active Refresh Table</h1>
+			<!--The Add, Edit, and Delete buttons-->
+			<button class="btn btn-secondary" id="activeAddbutton" title="Add" type="button">Add</button>
+			<button id="activeEditButton" type="button" disabled class="btn btn-secondary">Edit</button>
+			<button id="activeDeleteButton" type="button" disabled class="btn btn-secondary">Delete</button>
+			<button id="activeTransferButton" type="button" disabled class="btn btn-secondary">Transfer To Deployed</button>
+			<button id="activeSoftwareCompareButton" type="button" disabled class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#fileUploadModal">Software Comparison</button>
+			<button id="activeLabelButton" type="button" disabled class="btn btn-secondary">View Label</button>
+			<button id="activeNewReturnButton" type="button" disabled class="btn btn-secondary">View New Return Label</button>
+			<!--The table for active refreshes-->
+			<table id="activeRefreshesTable" class="dataTable table-striped">
+				<thead>
+					<tr>
+						<!--Table Headders-->
+						<th>Ticket Number</th>
+						<th>CSA</th>
+						<th>Date Accepted</th>
+						<th>End User</th>
+						<th>User ID</th>
+						<th>Stage</th>
+						<th>User Email</th>
+						<th>CSA Email</th>
+						<th>Old Asset Tag</th>
+						<th>New Asset Tag</th>
+						<th>Old Device Name</th>
+						<th>New Device Name</th>
+						<th>Manager Name</th>
+						<th>Manager Email</th>
+						<th>Mail Zone</th>
+					</tr>
+				</thead>
+			</table>
+		</section>
+		<!--Section for deployed refreshes-->
+		<section id="deployedRefreshes">
+			<h1>Deployed Refresh Table</h1>
+			<!--The Add, Edit, and Delete buttons-->
+			<button class="btn btn-secondary" id="deployedAddButton" title="Add" type="button">Add</button>
+			<button id="deployedEditButton" type="button" disabled class="btn btn-secondary">Edit</button>
+			<button id="deployedDeleteButton" type="button" disabled class="btn btn-secondary">Delete</button>
+			<button id="deployedTransferButton" type="button" disabled class="btn btn-secondary">Transfer To Active</button>
+			<button id="deployedSoftwareCompareButton" type="button" disabled class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#fileUploadModal">Software Comparison</button>
+			<button id="deployedLabelButton" type="button" disabled class="btn btn-secondary">View Label</button>
+			<button id="deployedNewReturnButton" type="button" disabled class="btn btn-secondary">View New Return Label</button>
+			<!--The table for the deployed refreshes-->
+			<table id="deployedRefreshesTable" class="dataTable table-striped">
+				<thead>
+					<tr>
+						<!--Table Headders-->
+						<th>Ticket Number</th>
+						<th>CSA</th>
+						<th>Date Accepted</th>
+						<th>End User</th>
+						<th>User ID</th>
+						<th>Stage</th>
+						<th>User Email</th>
+						<th>CSA Email</th>
+						<th>Old Asset Tag</th>
+						<th>New Asset Tag</th>
+						<th>Old Device Name</th>
+						<th>New Device Name</th>
+						<th>Manager Name</th>
+						<th>Manager Email</th>
+						<th>Mail Zone</th>
+					</tr>
+				</thead>
+			</table>
+		</section>
+	</body>
+	
+	<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top bg-light">
+		<div class="col-md-4 d-flex align-items-center">
+			<span class="mb-3 mb-md-0 text-muted">© 2022, Medical Mutual - All Rights Reserved</span>
+		</div>
+	</footer>
+	<!--jQuery-->
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="https://code.jquery.com/jquery-migrate-3.4.0.js"></script>
+	<!--Scripts for DataTables-->
+	<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js" ></script>
+	<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.js" ></script>
+	<script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.js" ></script>
+	<script src="https://cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.js" ></script>
+	<script src ="scripts/dataTables.altEditor.free.js"></script>
+	<script src="https://cdn.datatables.net/datetime/1.1.2/js/dataTables.dateTime.min.js"></script>
+	<!--Bootstrap5-->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+	<!--Misc-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.js" ></script>
+	<!--Table initialization and features file-->
+	<script type="text/javascript" src="scripts/main.js"></script>
+	<!--Modal for file upload-->
+	<div class="modal fade" id="fileUploadModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title" id="exampleModalLabel">Upload File For Comparison</h5>
+			  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form action="scripts/upload.php" method="POST" enctype="multipart/form-data">
+					<input type="file" id="myFile" name="filename" accept=".csv">
+					<p  style="padding-bottom: 10px; color: gray;">*Only accepts .csv files</p>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary invisible" onclick="openSoftwareCompare()" id="prevCompare" data-bs-dismiss="modal">Use Previous Comparison?</button>
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close">Close</button>
+						<button type="submit" class="btn btn-primary" name='submit' onclick="openSoftwareCompare()" id="newCompare">Upload File</button>
+					</div>
+				</form>
+			</div>
+		  </div>
+		</div>
+	</div>
+</html>
